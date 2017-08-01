@@ -1,0 +1,103 @@
+.nav {
+  overflow: hidden;
+  height:70px;
+  background-color: #00345c;
+  text-align:center;
+
+}
+
+.nav a {
+  font:normal 16px / 22px "Vollkorn";
+  display: inline-block;
+  color: #fff;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.nav a:hover {
+ 
+  border-bottom: 2px solid #fff;
+  margin-bottom: -3px;
+}
+.nav a.selected{
+  border-bottom: 2px solid #fff;
+  margin-bottom: -3px;
+}
+
+.containerNav{
+  display: none;
+}
+
+@media screen and (max-width: 1000px) {
+   .nav{
+      background-color: #fff;
+      height: 0px;
+   }
+   .nav.responsive a{
+      float:none;
+      display:block;
+    }
+   .nav a{
+    display:none;
+    color:#fff
+   }
+   .nav a:hover{
+    border-bottom: 0px ;
+    margin-bottom: 0px;
+   }
+   .nav a.selected{
+    border-bottom: 0px;
+    margin-bottom: 0px;
+  }
+  .containerNav {
+      position:absolute;
+      top:20px;
+      right:0px;
+      display:block;
+      cursor: pointer;
+       
+       
+   }
+  .bar1, .bar2, .bar3 {
+    width: 35px;
+    height: 5px;
+    background-color: grey;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
+  /* Rotate first bar */
+  .change .bar1 {
+      -webkit-transform: rotate(-45deg) translate(-9px, 6px) ;
+      transform: rotate(-45deg) translate(-9px, 6px) ;
+  }
+
+  /* Fade out the second bar */
+  .change .bar2 {
+      opacity: 0;
+  }
+
+  /* Rotate last bar */
+  .change .bar3 {
+      -webkit-transform: rotate(45deg) translate(-8px, -8px) ;
+      transform: rotate(45deg) translate(-8px, -8px) ;
+  }
+
+
+ .nav.responsive {
+    height: 100%; /* 100% Full-height */
+    width: 300px; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1000000; /* Stay on top */
+    top: 0;
+    left: 0;
+    background-color: #00345c; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 10px; /* Place content 60px from the top */
+    transition: 0.5s; /* 1 second transition effect to slide in the sidenav */
+  }
+ 
+
+}

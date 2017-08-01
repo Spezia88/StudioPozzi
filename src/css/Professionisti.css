@@ -1,0 +1,81 @@
+
+
+.customCard {
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  max-width: 300px;
+  margin: auto;
+  margin-top:50px;
+  margin-bottom:50px;
+  text-align: center;
+  font-family: arial;
+}
+.customCard:hover{
+   box-shadow: 0 14px 18px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.containerCard {
+  padding: 0 16px;
+}
+
+.containerCard::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.title {
+  color: grey;
+  font-size: 18px;
+}
+.avatarProfessionisti{
+  width:50%;
+  height:50%
+}
+.sectionProfessionisti{
+
+  margin-top: 10vh;
+
+}
+button {
+  border: none;
+  outline: 0;
+  display: inline;
+  padding: 8px;
+  color: white;
+ 
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  font-size: 14px;
+}
+.customButton{
+     background-color: #8ea5b6 !important;
+}
+p.mailProfessionista{
+
+ font-size:12px;
+ background-color:#8ea5b6;
+ color:#fff;
+}
+
+button:hover, a:hover {
+  opacity: 0.8;
+}
+@media screen and (max-width: 600px) {
+  .customCard {
+
+    
+    max-width: 200px;
+    margin: auto;
+    margin-top:25px;
+    margin-bottom:25px;
+ 
+  }
+  p.mailProfessionista{
+
+     font-size:10px !important;
+     
+  }
+
+}

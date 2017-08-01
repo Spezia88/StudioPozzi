@@ -1,0 +1,24 @@
+.imgCircolari{
+
+	
+	width:80%;
+}
+
+.nomeCircolare{
+	line-height: 50px;
+	text-align: left;
+}
+.glyphicon{
+
+	padding-right: 1em;
+}
+
+.sectionCircolari{
+
+	padding-top: 12em;
+}
+
+.circolareSingola:hover{
+	cursor: pointer; 
+	cursor: hand;
+}

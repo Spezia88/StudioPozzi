@@ -1,0 +1,9 @@
+
+
+
+
+
+
+
+ <NavBar />
+ <Content />

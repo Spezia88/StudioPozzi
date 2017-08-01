@@ -1,0 +1,31 @@
+#footer,#footer>.container{
+  margin-top: 10em;
+  position:relative;
+  bottom: 0;
+  width: 100%;
+  color:#9cbad1;
+  background-color: #00345c;
+  min-height: 10em;
+  
+}
+
+p.textFooter{
+	
+	border-right: 1px solid;
+	color:#9cbad1;
+}
+
+small{
+	font-size: 70%;
+	color:#9cbad1;
+}
+
+@media screen and (max-width: 1000px) {
+
+	p.textFooter{
+	
+	border-right: 0px;
+
+	
+}
+}

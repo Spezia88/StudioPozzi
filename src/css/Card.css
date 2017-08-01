@@ -1,0 +1,24 @@
+
+.imgCard{
+	display: block;
+	width: 100%;
+	margin:auto;
+	max-width:300px;
+	max-height: 150px;
+	
+}
+h3{
+	text-align: center;
+}
+
+@media screen and (max-width: 1000px) {
+
+	.imgCard{
+		
+		width: 100%;
+	
+	}
+
+
+
+}

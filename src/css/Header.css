@@ -1,0 +1,39 @@
+header{
+	background-color: #fff;
+}
+
+div#header{
+	width:50%;
+	margin:0 auto;
+	
+	/*margin-top:5vh;
+	margin-bottom:5vh;*/
+}
+.logoDesktop{
+		 display:block;
+   		 margin:auto;
+}
+.logoMobile{
+		display: none;
+}
+
+
+
+@media screen and (max-width: 900px) {
+	div#header{
+		width:50%;
+		margin-left:0px;
+		
+		/*margin-top:1vh;
+		margin-bottom:1vh;*/
+	
+	}
+	.logoDesktop{
+		display:none;
+	}
+	.logoMobile{
+		display: block;
+		margin-left:0px;
+	}
+}
+
