@@ -1,0 +1,117 @@
+.titoloServiziCliente{
+
+  margin-top: 10vh;
+}
+
+.tutorialLink{
+  display:inline;
+  
+  width:10%;
+  color:white;
+  cursor: pointer;
+}
+.logoYoutube{
+   width:15%;
+  height: 10%;
+ 
+  margin-top:1vh;
+  float: right
+
+}
+.logoBluenext{
+
+  width:50%;
+  max-height: 20vh;
+ 
+  
+  margin-top:5vh;
+  margin-bottom:5vh;
+
+}
+.divBluenext{
+
+  display:block;
+  width:100%;
+  cursor: pointer;
+  text-align: center;
+}
+
+.logoPrivacyBluenext{
+
+  width:250px;
+  height: 200px;
+ 
+  
+  margin-bottom:5vh;
+
+}
+.divPrivacyBluenext{
+
+  display:block;
+  width:100%;
+  cursor: pointer;
+  text-align: center;
+   margin-top:5vh;
+  margin-bottom:5vh;
+}
+
+a.fatturazioneCloud{
+  
+  display: block ;
+  line-height: 0px ;
+  font-weight: bold ;
+  text-align: center; ;
+  font-size: 17px ;
+  color:black ;
+  
+  text-decoration: none ;
+
+  
+}
+a.fatturazioneCloud:hover{
+   text-decoration: none !important;
+   border-bottom:0px !important;
+   
+}
+.tutorialBluenext,.tutorialPrivacy{
+
+    text-align: center;
+    margin-top:5vh;
+    margin-bottom:5vh;
+}
+.youtubeLogo{
+  max-width: 100px;
+  max-height: 100px;
+  margin-top: 5vh;
+  float:left;
+}
+@media screen and (max-width: 900px) {
+
+    .logoBluenext{
+
+          width:80%;
+          max-height: 30vh;
+         
+          margin-top:2vh;
+          margin-bottom: 2vh;
+    }
+    .logoPrivacyBluenext{
+
+        width:80%;
+        max-height: 40vh;
+       
+        margin-top:2vh;
+        margin-bottom: 2vh;
+
+      }
+      .youtubeLogo{
+            max-width: 100px;
+            max-height: 100px;
+            margin-top: 5vh;
+            text-align: center;
+            float:none;
+
+    }
+
+
+}
