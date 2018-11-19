@@ -102,7 +102,7 @@
     @media screen and (max-width: 699px ){
 
          .carousel-inner>.item>a>img, .carousel-inner>.item>img, .img-responsive, .thumbnail a>img, .thumbnail>img{
-             max-height: 145px;
+             max-height: 100px;
         }
 
     }

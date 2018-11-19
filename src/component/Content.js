@@ -11,7 +11,9 @@ import Disclaimer from './Disclaimer';
 import NoteLegali from './NoteLegali';
 import Privacy from './Privacy';
 import SideBarAttivita from './SideBarAttivita';
+import InformativaCookie from './InformativaCookie';
 import Attivita from './Attivita.js';
+import ServiziAlCliente from './ServiziAlCliente.js';
 import AdminConsole from './AdminConsole';
 
 import Login from './Login';
@@ -72,8 +74,10 @@ class Content extends Component{
 			        <Route path='/esecuzioni'  component={Esecuzioni}/>
 			        <Route path='/link' component={ListSiti}/>
 			        <Route path='/contatti' component={Contatti}/>
+			        <Route path='/informativacookie' component={InformativaCookie}/>
 			        <Route path='/attivita/*' render={(props)=><SideBarAttivita adminMode={false} {...props} /> } />
 			     	<Route path="/attivita" exact component={Attivita} />	
+			     	<Route path="/servizialcliente" exact component={ServiziAlCliente} />	
 			     	
 			     
 			     	<PrivateRoute  path="/approfondimenti"  component={Circolari} auth={this.props.authCircolari}/> 

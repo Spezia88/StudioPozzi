@@ -37,6 +37,14 @@
   margin-top: 10vh;
 
 }
+
+.deleteProfessionista > button{
+
+  margin-top: 10px;
+}
+.btn{
+  padding: 6px 2px;
+}
 button {
   border: none;
   outline: 0;

@@ -2,3 +2,24 @@
 
 	margin-top: 10vh;
 }
+
+h4.sede{
+
+	font-weight: bold;
+
+}
+h3.propertySede{
+	text-align: left;
+	font-weight: 400;
+}
+
+.sedeContainer{
+
+
+	margin-bottom: 10vh;
+}
+.propertyContainer{
+
+	margin-top: 4vh;
+	margin-bottom: 4vh;
+}

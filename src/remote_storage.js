@@ -52,17 +52,7 @@ export function downloadCircolare(fileName,anno){
       return starsRef.getDownloadURL();
 
 }
-/*export function getCircolari(){
-  
-   database.ref('anniCorcolari').child(categoria).on('child_added',(idProfessionista)=>{
-        return fn(database.ref('associati/professionisti').child(idProfessionista.key).once('value').then(professionista =>{
 
-          return professionista.val();
-
-      }));
-        
-  })
-}*/
 export function getAttivita() {
   return database.ref('attivita')/*.once('value').then(data => {
  
@@ -71,12 +61,45 @@ export function getAttivita() {
  
 }  
 export function getContatti() {
-  return database.ref('contatti').once('value').then(data => {
- 
-    const contatti = data.val();
-    return contatti;
+  return database.ref('contatti')
+}
+
+export function deleteContatto(key){
+
+
+  return database.ref('contatti').child(key).remove().then(function() {
+    console.log("coontatto eliminato");
   });
 }
+export function addContatto(contatto){
+ 
+        
+        return database.ref("contatti").push().set({
+                  email: contatto.email,
+                  email_certificata: contatto.email_certificata,
+                  fax:contatto.fax,
+                  indirizzo:contatto.indirizzo,
+                  lat:Number(contatto.lat),
+                  lng:Number(contatto.lng),
+                  luogo:contatto.luogo,
+                  telefono:contatto.telefono,
+                  titolo:contatto.titolo
+                });
+
+}
+export function saveContatti(sedi){
+    
+    let sediNew=[];
+
+    sedi.map((sede,index)=>{
+               
+                delete sede[".key"];
+                sediNew.push(sede);
+
+        })
+    return database.ref('contatti').set(sediNew);
+}
+
 export function getPrivacy() {
   return database.ref('privacy').once('value').then(data => {
  
@@ -98,25 +121,38 @@ export function getNoteLegali() {
     return noteLegali;
   });
 }
+export function saveNoteLegali(note){
+   
+
+   return database.ref('note_legali').set(
+                      note
+          );
+}
+
 
 export function getHome(){
-  return database.ref('home').once('value').then(data => {
+  return database.ref('home')/*.once('value').then(data => {
  
     const home = data.val();
     return home;
-  });
+  });*/
 }
 export function getProfessionistiFromCategoria(categoria,fn){
   
    database.ref('associati/categorieProfessionisti').child(categoria).on('child_added',(idProfessionista)=>{
         return fn(database.ref('associati/professionisti').child(idProfessionista.key).once('value').then(professionista =>{
 
-          return professionista.val();
+          return professionista;
 
       }));
         
   })
 }
+export function getCategorieProfessionali(){
+  
+  return database.ref('associati/categorie')
+}
+
 export function saveProfessionistiFromCategoria(categoria,fn){
   
    database.ref('associati/categorieProfessionisti').child(categoria).on('child_added',(idProfessionista)=>{
@@ -128,6 +164,66 @@ export function saveProfessionistiFromCategoria(categoria,fn){
         
   })
 }
+
+export function addProfessionista(professionista){
+        
+       
+        var newProfessionistaKey = database.ref('associati/professionisti').push().key;
+        var newProfessionista={ 
+
+                    contatti:{
+
+                              email:professionista.email,
+                              fax:professionista.fax,
+                              telefono:professionista.telefono,
+
+                            },
+                    istruzione:professionista.istruzione,
+                    nomeCompleto:professionista.nomeCompleto,
+                    cv:professionista.cv,
+                    ruolo:professionista.ruolo
+
+
+
+        };
+        database.ref("associati/professionisti/"+newProfessionistaKey).set(newProfessionista,function(error){
+                  
+                  if(error){
+                      return;
+                  }
+                  else{
+
+                      let newProfessionistaCategoria={};
+                      newProfessionistaCategoria[newProfessionistaKey]=newProfessionista;
+                      return database.ref("associati/categorieProfessionisti/"+professionista.categoria).update(newProfessionistaCategoria);
+                  }
+                });
+
+}
+export function deleteProfessionista(idProfessionista,idCategoria){
+
+
+  return database.ref('associati/professionisti').child(idProfessionista).remove().then(function() {
+     
+      console.log("professionista eliminato");     
+      
+      database.ref('associati/categorieProfessionisti/'+idCategoria).child(idProfessionista).remove().then(function() {
+                                                                    
+         
+          console.log("professionista eliminato da categoria");
+
+      })
+    
+
+  });
+}
+export function saveStoria(storia){
+  
+   return database.ref('associati/storia').set(
+                                                    storia
+          );
+}
+
 export function login (username, pw) {
   return firebaseAuth().signInWithEmailAndPassword(username, pw)
 }  
@@ -156,9 +252,12 @@ export function saveAssociati(associati){
   });
 }
 
-export function saveProfessionisti(professionisti){
-    
-    return database.ref('associati').child("professionisti").update(professionisti)
+export function saveProfessionista(professionista,idProfessionista,idCategoria){
+   
+    return database.ref('associati/professionisti').child(idProfessionista).update(professionista).then(function(){
+
+           database.ref('associati/categorieProfessionisti/'+idCategoria).child(idProfessionista).update(professionista);
+    });
 }
 
 export function saveCircolare(anno,circolari,file){
@@ -195,25 +294,15 @@ export function deleteCircolare(anno,circolari){
                                               });
 }
 
-export function deleteEsecuzione(esecuzioni){
+export function deleteEsecuzione(key){
 
-  
-  var esecuzioniNew=[];
-  esecuzioni.map((esecuzione,index)=>{
-       
-        delete esecuzione[".key"];
-        esecuzioniNew.push(esecuzione);
 
-  })
- 
-  return database.ref('esecuzioni').update({
-                                             esecuzioniNew
-                                          });
+  return database.ref('esecuzioni_immobiliari').child(key).remove().then(function() {
+    console.log("esecuzione eliminata");
+  });
 }
 export function addEsecuzione(esecuzione){
  
-       
-      
         return database.ref("esecuzioni_immobiliari").push().set({
                   documentazione: esecuzione.documentazione,
                   luogo: esecuzione.luogo,

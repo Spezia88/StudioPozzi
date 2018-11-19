@@ -16,9 +16,9 @@ import { Link,NavLink } from 'react-router-dom';
 //import associati from '../datiAssociati.js'
 class LinkDocumentazione extends Component {
 		constructor(props) {
-			//console.log(props);
+			
 			super(props);
-			//console.log(this.props);
+			
 			this.state={
 				link:this.props.documento,
 				url:""
@@ -50,18 +50,18 @@ class LinkDocumentazione extends Component {
 			window.open(this.state.url);
 		}
 		render() {
-				let ButtonElimina;
+				/*let ButtonElimina;
 				if(this.props.editMode)
 					ButtonElimina=<div>
 							<Button onClick={()=>this.props.handleEliminaDocumento} bsStyle="danger">Elimina</Button>
-						</div>;
+						</div>;*/
 
 				return(
 					<div>
 						<div>
 							<a href='#' onClick={this.handleClick}>{this.state.link}</a>
 						</div>
-						{ButtonElimina}
+					
 						
 					</div>
 				)
@@ -81,7 +81,7 @@ class  Esecuzione extends Component{
 							professionista:props.professionista
 					}
 					this.handleChange=this.handleChange.bind(this);
-					this.handleEliminaDocumento=this.handleEliminaDocumento.bind(this);
+					//this.handleEliminaDocumento=this.handleEliminaDocumento.bind(this);
 				}
 
 				handleChange(event){
@@ -97,7 +97,7 @@ class  Esecuzione extends Component{
 				}
 				handleEliminaDocumento(index){
 
-					debugger;
+					
 				}
 				render(){
 					let Luogo,Registro,Tipologia,ProfessionistaIncaricato,Elimina;
@@ -116,11 +116,15 @@ class  Esecuzione extends Component{
 						Tipologia=<p>{this.state.tipologia}</p>;
 						ProfessionistaIncaricato=<p>{this.state.professionista}</p>
 					}
-					let linkDocumenti=this.props.documentazione.map((documento,index)=>{
-						
-						return <LinkDocumentazione editMode={this.props.editMode} documento={documento} key={index} handleEliminaDocumento={this.handleEliminaDocumento(index)}/>
-					});
-					
+					let linkDocumenti;
+					if(this.props.documentazione !=null){
+						linkDocumenti=this.props.documentazione.map((documento,index)=>{
+							
+							return <LinkDocumentazione editMode={this.props.editMode} documento={documento} key={index} handleEliminaDocumento={this.handleEliminaDocumento(index)}/>
+						});
+					}
+					else
+						linkDocumenti=<p></p>;
 
 					return(
 						
@@ -161,6 +165,25 @@ class  Esecuzione extends Component{
 				
 		
 }
+
+function Aggiungi(props) {
+  const isLoggedIn = props.editMode;
+  const admin=props.adminMode;
+  if (isLoggedIn && admin) {
+    return (<div>
+					   <Col lg={11} sm={8}>
+				 
+					   </Col>
+				                
+				 		<Col lg={1} sm={4}>
+					        <NavLink to='/admin/nuovaesecuzione'><Button bsStyle="success">Aggiungi</Button></NavLink>
+			     		</Col>
+					
+			    
+			 </div>);
+  }
+  return (<div></div>);
+}
 		
 class Esecuzioni extends Component{
 	constructor(props) {
@@ -174,13 +197,15 @@ class Esecuzioni extends Component{
 		
 	}
 	componentWillMount() {
+
+
 		     this.bindAsArray(getEsecuzioni(), "esecuzioni");
 	}
 
 	deleteEsecuzione(index){
-				
-				var newEsecuzioni=removeIndexFromArray(this.state.esecuzioni,index);
-				deleteEsecuzione(newEsecuzioni);
+			
+				deleteEsecuzione(index);
+				window.scrollTo(0, 0);
 
 	}
 	handleAnnulla(){
@@ -214,7 +239,7 @@ class Esecuzioni extends Component{
 		
 		const _this=this;
 		const ListEsecuzioni=this.state.esecuzioni.map((esecuzione,index)=>{
-
+			
 			return(
 				<Esecuzione editMode={this.state.editMode} {...esecuzione} key={index} index={index} deleteEsecuzione={_this.deleteEsecuzione.bind(_this)} handleChangeEsecuzione={_this.handleChangeEsecuzione.bind(_this)}/>
 				
@@ -229,17 +254,7 @@ class Esecuzioni extends Component{
 				{ListEsecuzioni}
 				</div>
 				<ButtonGroup editMode={this.state.editMode} adminMode={this.props.adminMode} handleSave={this.handleSave} handleAnnulla={this.handleAnnulla}/>
-				<div>
-					   <Col lg={11} sm={8}>
-				 
-					   </Col>
-				                
-				 		<Col lg={1} sm={4}>
-					        <NavLink to='/admin/nuovaesecuzione'><Button bsStyle="success">Aggiungi</Button></NavLink>
-			     		</Col>
-					
-			    
-			    </div>
+				<Aggiungi editMode={this.state.editMode} adminMode={this.props.adminMode}/>
 			</div>
 		)
 	}

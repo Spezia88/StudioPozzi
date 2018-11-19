@@ -22,22 +22,35 @@ const CarouselInstance =(props)=>{
 	return(
 		
 		  <Carousel >
+		    
 		    <Carousel.Item>
-		      
-		   	 <img width={1900} height={500} alt="ingresso" src={require('../image/ingresso.jpg')} />
-		    </Carousel.Item>
-		    <Carousel.Item>
-		      <img width={1900} height={500} alt="ufficio" src={require('../image/ufficio.jpg')} />
+		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/Salariunioni_1_HD.jpg')} />
 		   
 		    </Carousel.Item>
 		    <Carousel.Item>
-		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/salariunioni.jpg')} />
+		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/salariunionifullHD.jpg')} />
 		      
 		    </Carousel.Item>
-		     <Carousel.Item>
-		      <img width={1900} height={500} alt="statua" src={require('../image/statua.jpg')} />
+		    <Carousel.Item>
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/StudioPozziEsterni_elaboraz_4.jpg')} />
 		      
 		    </Carousel.Item>
+		    
+		    <Carousel.Item>
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/StudioPozziEsterni_elaboraz_6.jpg')} />
+		      
+		    </Carousel.Item>
+
+		    <Carousel.Item>
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/Ufficio1_FileHD.jpg')} />
+		      
+		    </Carousel.Item>
+		    <Carousel.Item>
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/ufficiopianoterrafullHD2.jpg')} />
+		      
+		    </Carousel.Item>
+
+		    
 		  </Carousel>
 		
 	)
@@ -60,15 +73,17 @@ class Home extends Component{
 			 
 			
 		}
-		componentWillMount() {
-			getHome().then(home=>{
+		componentDidMount() {
+			 this.bindAsObject(getHome(),  "home");
+
+			/*getHome().then(home=>{
 							
 					        this.setState({
 					            home
 
 					        })
 
-					    });
+					    });*/
 		}
 		handleAnnulla(){
 			getHome().then(home=>{

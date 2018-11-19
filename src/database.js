@@ -9,6 +9,20 @@ var config = {
     storageBucket: "sito-e63c9.appspot.com",
     messagingSenderId: "686723819076"
   };
+
+var configDev = {
+    apiKey: "AIzaSyBOrNvhMfaAqzW5MHn074yUcprwatyT8Zw",
+    authDomain: "sito-e63c9.firebaseapp.com",
+    databaseURL: "https://sitodev-5a11d.firebaseio.com/",
+    projectId: "sito-e63c9",
+    storageBucket: "sito-e63c9.appspot.com",
+    messagingSenderId: "686723819076"
+  };
+
+
+
+
+
 firebase.initializeApp(config);
 export const database = firebase.database();
 export const firebaseAuth = firebase.auth;

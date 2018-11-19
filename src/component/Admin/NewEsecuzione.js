@@ -86,7 +86,17 @@ class NewEsecuzione extends Component{
 	}
 	handleAddEsecuzione(){
 
-		addEsecuzione(this.state);
+		
+		
+		this.setState({
+
+				luogo:this.luogo.value,
+				registro:this.registro.value,
+				tipologia:this.tipologia.value,
+				documentazione:this.state.documentazione,
+				professionista:this.professionista.value
+		}, () => addEsecuzione(this.state) );
+		
 
 	}
 	render(){
@@ -100,19 +110,21 @@ class NewEsecuzione extends Component{
 					      type="text"
 					      label="Luogo"
 					      placeholder="Inserisci luogo"
-					      inputRef={ref => { this.input = ref }}
+					      inputRef={ref => { this.luogo = ref }}
 					    />
 					    <FieldGroup
 					      id="formControlsRegistro"
 					      type="text"
 					      label="Registro"
 					      placeholder="Inserisci registro"
+					      inputRef={ref => { this.registro = ref }}
 					    />
 					    <FieldGroup
 					      id="formControlTipologia"
 					      label="Tipologia"
 					      type="text"
-					      placeholder="Inserisci professionista"
+					      placeholder="Inserisci tipologia"
+					      inputRef={ref => { this.tipologia = ref }}
 					    />
 					    <FormGroup controlId="formControlDocumentazione">
 						     <ControlLabel>Aggiungi documentazione</ControlLabel>
@@ -129,7 +141,8 @@ class NewEsecuzione extends Component{
 					      id="formControlTipologia"
 					      label="Professionista Incaricato"
 					      type="text"
-					      placeholder="Inserisci tipologia"
+					      placeholder="Inserisci professionista"
+					      inputRef={ref => { this.professionista = ref }}
 					    />
 					     <Button bsStyle="success" type="submit">
       						Aggiungi

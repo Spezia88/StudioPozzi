@@ -12,7 +12,7 @@ import Content from './component/Content';
 import Home from './component/Home';
 import AdminConsole from './component/AdminConsole';
 import {PrivateRoute} from './component/Content';
-import {BrowserRouter as Router,hashHistory,Route} from 'react-router-dom';
+import {BrowserRouter as Router,hashHistory,Route,Redirect} from 'react-router-dom';
 import {getContatti,getNoteLegali,getPrivacy,getDisclaimer} from './remote_storage';
 import {database,firebaseAuth} from './database.js';
 import ReactFireMixin from 'reactfire';
@@ -69,15 +69,6 @@ class App extends Component {
                           })
   
                             
-
-
-
-     
-   
-   
-
-    
-    
     // I don't bind primitive type
     
     getPrivacy().then(privacy=>{
@@ -121,10 +112,54 @@ class App extends Component {
                 <div>
                   <PrivateRoute  exact={true} path="/admin"  component={AdminConsole}  auth={this.state.authAdmin} />
                   <PrivateRoute  path="/admin/*"  component={AdminConsole}  auth={this.state.authAdmin} />
-            
+                  <Route exact path="/contatti.htm" render={() => (
+                   
+                      <Redirect to="/contatti"/>
+                  
+                  )}/>
+                  <Route exact path="/link.htm" render={() => (
+                   
+                      <Redirect to="/link"/>
+                  
+                  )}/>
+                  <Route exact path="/esecuzioni.htm" render={() => (
+                   
+                      <Redirect to="/esecuzioni"/>
+                  
+                  )}/>
+                  <Route exact path="/studio.htm" render={() => (
+                   
+                      <Redirect to="/studio"/>
+                  
+                  )}/>
+                   <Route exact path="/attivita.htm" render={() => (
+                   
+                      <Redirect to="/attivita"/>
+                  
+                  )}/>
+                   <Route exact path="/approfondimenti.htm" render={() => (
+                   
+                      <Redirect to="/approfondimenti"/>
+                  
+                  )}/>
+                  
+                   <Route exact path="/associati.htm" render={() => (
+                   
+                      <Redirect to="/studio"/>
+                  
+                  )}/>
+                  <Route exact path="/scadenze.htm" render={() => (
+                   
+                      <Redirect to="/admin/circolari"/>
+                  
+                  )}/>
+                  <Route exact path="/disclaimer.htm" render={() => (
+                   
+                      <Redirect to="/disclaimer"/>
+                  
+                  )}/>
 
-                
-                
+               
                   <Route  path="/"   render={(props)=><Content authCircolari={this.state.authCircolari} authAdmin={this.state.authAdmin} {...props}  />}     />
                 </div>
                 

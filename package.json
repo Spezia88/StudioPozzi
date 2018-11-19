@@ -8,6 +8,7 @@
     "immutability-helper": "^2.2.0",
     "react": "^15.5.4",
     "react-bootstrap": "^0.30.9",
+    "react-cookie-banner": "0.0.18",
     "react-dom": "^15.5.4",
     "react-firebase-file-uploader": "^2.1.2",
     "react-firebase-storage-connector": "^1.1.0",

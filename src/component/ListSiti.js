@@ -6,19 +6,20 @@ import {Grid,Row,Col,Clearfix } from 'react-bootstrap';
 
 import firebase from 'firebase';
 import '../css/Siti.css';
+
 //import database from '../database.js';
 import {getSitiPerLaProfessione} from '../remote_storage';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 
-const Siti=(props)=>{
+export const Siti=(props)=>{
 	
 	
 
 	return(
 		  	 
-		  			<div onClick={()=>props.handleClick(props.sito)} className="containerSito">
-			 			<ImageFromStorage storageRef={firebase.storage().ref('image').child(props.immagine)} alt={props.nome} className="avatarSito" />
+		  			<div onClick={()=>props.handleClick(props.sito)} className={props.classContainer}>
+			 			<ImageFromStorage storageRef={firebase.storage().ref('image').child(props.immagine)} alt={props.nome} className={props.classImage} />
 			 		
 		 			</ div>
 		 	
@@ -44,12 +45,12 @@ class ListSiti extends Component{
 		
 		
 		const ListSiti=this.state.sitiProfessione.map((siti,index)=>{
-			console.log(siti);
+			
 				return(
 										
 						
 							<Col xs={12} sm={12} md={6} lg={4} key={index}>
-									<Siti {...siti} key={index} handleClick={this.openSite}/>
+									<Siti {...siti} key={index} handleClick={this.openSite} classImage="avatarSito" classContainer="containerSito" />
 									
 							</Col>
 							
@@ -57,6 +58,7 @@ class ListSiti extends Component{
 				)
 			
 		});
+		console.log(ListSiti);
 		
 		return(
 			<div>	

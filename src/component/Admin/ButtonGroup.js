@@ -39,6 +39,10 @@ class ButtonGroup extends Component{
 	handleClickActionButton(){
 
 		this.props.handleSave();
+		if(this.props.scrollToTop || this.props.scrollToTop==undefined){
+			window.scrollTo(0, 0);
+		}
+		
 		this.props.editMode ?
 								this.setState({
 
@@ -59,24 +63,26 @@ class ButtonGroup extends Component{
 		
 		let Annulla;
 		if( this.props.editMode){
-				Annulla= <Col lg={1} sm={4}><Button onClick={this.handleClickAnnulla} bsStyle="danger">Annulla</Button></Col>;
+				Annulla= <Col lg={3} sm={4}><Button onClick={this.handleClickAnnulla} bsStyle="danger">Annulla</Button></Col>;
 
 		}
 		else
-				Annulla=<Col lg={1} sm={4}></Col>;
+				Annulla=<Col lg={3} sm={4}></Col>;
 
 		return(
 			 <div>
-				 <Col lg={10} sm={4}>
+				 <Col lg={5} sm={2}>
 				 
 				 </Col>
 				                
 				 {Annulla}
 				                
-				 <Col lg={1} sm={4}>
+				 <Col lg={3} sm={4}>
 					       <Button onClick={this.handleClickActionButton} bsStyle={this.state.buttonStyle}>{this.state.buttonLabel}</Button>
 			     </Col>
-	        					
+	        	 <Col lg={1} sm={2}>
+				 
+				 </Col>				
 			</div>
 			
 		)

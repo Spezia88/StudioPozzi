@@ -9,18 +9,27 @@ import {PrivateRoute} from './Content';
 import {signOutCircolari} from '../remote_storage';
 //import Studio from './Admin/Studio';
 import Associati,{Storia} from './Associati';
-import NewEsecuzione from './Admin/NewEsecuzione'
+import NewEsecuzione from './Admin/NewEsecuzione';
+import NewContatto from './Admin/NewContatto';
+import NewProfessionista from './Admin/NewProfessionista';
+import NoteLegali from './NoteLegali';
+import Contatti from './Contatti';
 import Circolari from './Circolari';
-import SideBarAttivita from './SideBarAttivita'
+import SideBarAttivita from './SideBarAttivita';
+
+
 export default class AdminConsole extends Component{
 	constructor(props) {
 		super(props);
 		
 	}
-
+	componentDidMount() {
+		 window.scrollTo(0, 0);
+	}
 	handleClickButton(){
+
 		signOutCircolari().then(function() {
-  					
+  							debugger;
   						 <Redirect to={{
 											
 											pathname: '/'
@@ -32,6 +41,8 @@ export default class AdminConsole extends Component{
   									console.log(error);
 							});
 	}
+
+
 
 	render(){
 
@@ -56,6 +67,8 @@ export default class AdminConsole extends Component{
 						  <li className="attivitaMenu" key={3}><NavLink activeClassName="attivitaSelected"  key={3} exact to="/admin/attivita" >ATTIVITA</NavLink></li>
 						  <li className="attivitaMenu" key={4}><NavLink activeClassName="attivitaSelected"  key={4} exact to="/admin/circolari" >CIRCOLARI</NavLink></li>
 						  <li className="attivitaMenu" key={5}><NavLink activeClassName="attivitaSelected"  key={5} exact to="/admin/esecuzioni" >ESECUZIONI IMMOBILIARI</NavLink></li>
+						  <li className="attivitaMenu" key={6}><NavLink activeClassName="attivitaSelected"  key={6} exact to="/admin/contatti" >CONTATTI</NavLink></li>
+						  <li className="attivitaMenu" key={7}><NavLink activeClassName="attivitaSelected"  key={7} exact to="/admin/notelegali" >NOTE LEGALI</NavLink></li>
 						  
 						</ul>
 					</Col>
@@ -68,6 +81,10 @@ export default class AdminConsole extends Component{
                 		  <Route path="/admin/attivita"   render={(props)=><SideBarAttivita adminMode={true} {...props} />}  />
                 		  <Route path="/admin/esecuzioni"   render={(props)=><Esecuzioni adminMode={true} {...props} />}  auth={this.props.auth}/>
                 		  <Route path="/admin/nuovaesecuzione"   render={(props)=><NewEsecuzione adminMode={true} {...props} />}  auth={this.props.auth}/>
+                		  <Route path="/admin/contatti"   render={(props)=><Contatti adminMode={true} {...props} />}  auth={this.props.auth}/>
+                		  <Route path="/admin/nuovocontatto"   render={(props)=><NewContatto adminMode={true} {...props} />}  auth={this.props.auth}/>
+                		  <Route path="/admin/nuovoprofessionista"   render={(props)=><NewProfessionista adminMode={true} {...props} />}  auth={this.props.auth}/>
+                		  <Route path="/admin/notelegali"   render={(props)=><NoteLegali adminMode={true} {...props} />}  auth={this.props.auth}/>
                 		
 					</Col>
 					
