@@ -16,3 +16,19 @@ export function removeIndexFromArray(arr,index) {
       return arr;
 }
 
+export const AuthUser = {
+	isAuthenticated: false,
+	role:"",
+	authenticate(role) {
+	  this.isAuthenticated = true;
+	  this.role=role;
+	  
+	},
+	signout() {
+	  this.isAuthenticated = false;
+	  this.role="";
+	}
+}
+
+export const ROLE_ADMIN="ADMIN";
+export const ROLE_CLIENT="CLIENT";

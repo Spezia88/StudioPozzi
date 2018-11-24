@@ -224,9 +224,7 @@ export function saveStoria(storia){
           );
 }
 
-export function login (username, pw) {
-  return firebaseAuth().signInWithEmailAndPassword(username, pw)
-}  
+
 export function saveHome(home){
 
   return database.ref('home').set({
@@ -312,8 +310,20 @@ export function addEsecuzione(esecuzione){
                 });
 
 }
+
+
+export function login (username, pw) {
+  return firebaseAuth().signInWithEmailAndPassword(username, pw)
+}  
+
+
 export function signOutCircolari(){
   return firebaseAuth().signOut()
+}
+
+export function getUserRole(uid){
+
+  return database.ref('users').child(uid).once('value');
 }
 
 

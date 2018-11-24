@@ -12,12 +12,14 @@ import Content from './component/Content';
 import Home from './component/Home';
 import AdminConsole from './component/AdminConsole';
 import {PrivateRoute} from './component/Content';
-import {BrowserRouter as Router,hashHistory,Route,Redirect} from 'react-router-dom';
-import {getContatti,getNoteLegali,getPrivacy,getDisclaimer} from './remote_storage';
+import {BrowserRouter as Router,hashHistory,Route,Redirect,withRouter} from 'react-router-dom';
+import {getContatti,getNoteLegali,getPrivacy,getDisclaimer, getUserRole } from './remote_storage';
 import {database,firebaseAuth} from './database.js';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
+import {AuthUser,ROLE_ADMIN} from './js/common';
 //import Site from './Site';
+
 
 class App extends Component {
   constructor() {
@@ -30,7 +32,8 @@ class App extends Component {
       noteLegali:"",
       privacy:"",
       authCircolari:false,
-      authAdmin:false
+      authAdmin:false,
+      user:null
     };
 
   }
@@ -38,35 +41,31 @@ class App extends Component {
   
 
   componentWillMount() {
-     
-    this.removeListener = firebaseAuth().onAuthStateChanged((user) => {
-                            
+    var _this=this; 
+    this.listener = firebaseAuth().onAuthStateChanged((user) => {
+                           
                             if (user) {
+                                    this.setState({ user});
+                                    
+                                    getUserRole(user.uid).then(user=>{
+                                           
+                                            AuthUser.authenticate(user.val().role);
+                                            if(_this.props.location.state.from.pathname==="/admin" && user.val().role===ROLE_ADMIN)
+                                                _this.props.history.push("/admin");
+                                            else
+                                                _this.props.history.push("/approfondimenti");
 
-                                if(user.email!="generico@gmail.com"){
-                                    this.setState({
-                                        authAdmin: true
-                                       
-                                        })
-                               }
-                               else{
-                                 
-                                    this.setState({
-                                        authCircolari: true
-                                       
-                                        })
-
-                               }
-                            } 
-                            else {
-                             //Logout from all the authenticated access
-                              this.setState({
-                                authAdmin: false,
-                                authCircolari:false
+                                    });
+                                    
+                                    
+                                    
                                 
-                              })
+                            } else {
+                                    console.info('Must be authenticated');
+                                    
                             }
-                          })
+                           
+                     })
   
                             
     // I don't bind primitive type
@@ -101,17 +100,19 @@ class App extends Component {
   }
   
   componentWillUnmount () {
-                            this.removeListener()
+                            this.listener()
   }
+
   
+ 
   render() {
     return (
             <div>
                 <Header />  
                 <NavBar />
                 <div>
-                  <PrivateRoute  exact={true} path="/admin"  component={AdminConsole}  auth={this.state.authAdmin} />
-                  <PrivateRoute  path="/admin/*"  component={AdminConsole}  auth={this.state.authAdmin} />
+                  <PrivateRoute  exact={true} path="/admin"  component={AdminConsole} authRole={ROLE_ADMIN} />
+                  <PrivateRoute  path="/admin/*"  component={AdminConsole} authRole={ROLE_ADMIN} />
                   <Route exact path="/contatti.htm" render={() => (
                    
                       <Redirect to="/contatti"/>
@@ -173,4 +174,4 @@ class App extends Component {
 
 reactMixin(App.prototype, ReactFireMixin)
 
-export default App;
+export default withRouter(App);

@@ -1,14 +1,14 @@
 import React,{ Component } from 'react';
 //import  '../css/Associati.css';
 import TitleBanner from './TitleBanner';
-import {Grid,Row,Col,Button} from 'react-bootstrap';
-import { NavLink,Route,Redirect } from 'react-router-dom';
+import {Row,Col,Button} from 'react-bootstrap';
+import { NavLink,Route,withRouter } from 'react-router-dom';
 import Home from './Home';
 import Esecuzioni from './Esecuzioni';
-import {PrivateRoute} from './Content';
-import {signOutCircolari} from '../remote_storage';
+
+import {firebaseAuth} from '../database';
 //import Studio from './Admin/Studio';
-import Associati,{Storia} from './Associati';
+import Associati from './Associati';
 import NewEsecuzione from './Admin/NewEsecuzione';
 import NewContatto from './Admin/NewContatto';
 import NewProfessionista from './Admin/NewProfessionista';
@@ -16,31 +16,30 @@ import NoteLegali from './NoteLegali';
 import Contatti from './Contatti';
 import Circolari from './Circolari';
 import SideBarAttivita from './SideBarAttivita';
+import {AuthUser} from '../js/common';
 
-
-export default class AdminConsole extends Component{
+class AdminConsole extends Component{
 	constructor(props) {
 		super(props);
-		
+		this.signOutUser=this.signOutUser.bind(this);
 	}
 	componentDidMount() {
+		
 		 window.scrollTo(0, 0);
 	}
-	handleClickButton(){
+	signOutUser(e){
 
-		signOutCircolari().then(function() {
-  							debugger;
-  						 <Redirect to={{
-											
-											pathname: '/'
-													
-									   }}/>
-
-		})
-		.catch(function(error) {
-  									console.log(error);
-							});
-	}
+		e.preventDefault();
+		let _this=this;
+		firebaseAuth().signOut().then(function() {
+			
+			console.log('Signed Out Successfull from firebase');
+			AuthUser.signout();
+			_this.props.history.push("/");
+		  }, function(error) {
+			console.error('Sign Out Error', error);
+		  });
+	  }
 
 
 
@@ -53,7 +52,7 @@ export default class AdminConsole extends Component{
 						<Col lg={10} >
 						</Col>
 						<Col lg={1}>
-							 <Button onClick={this.handleClickButton} bsStyle="primary">Logout</Button>
+							 <Button onClick={this.signOutUser} bsStyle="primary">Logout</Button>
 						</Col>
 						<Col lg={1}>
 							 
@@ -77,14 +76,14 @@ export default class AdminConsole extends Component{
 						  <Route exact path="/admin" render={(props)=><Home adminMode={true} {...props}  />}  />
                 		  <Route path="/admin/studio"   render={(props)=><Associati adminMode={true} {...props}  />}/>
                 		 
-                		  <Route path="/admin/circolari"  render={(props)=><Circolari adminMode={true} {...props} />}  auth={this.props.auth}/>
+                		  <Route path="/admin/circolari"  render={(props)=><Circolari adminMode={true} {...props} />}  />
                 		  <Route path="/admin/attivita"   render={(props)=><SideBarAttivita adminMode={true} {...props} />}  />
-                		  <Route path="/admin/esecuzioni"   render={(props)=><Esecuzioni adminMode={true} {...props} />}  auth={this.props.auth}/>
-                		  <Route path="/admin/nuovaesecuzione"   render={(props)=><NewEsecuzione adminMode={true} {...props} />}  auth={this.props.auth}/>
-                		  <Route path="/admin/contatti"   render={(props)=><Contatti adminMode={true} {...props} />}  auth={this.props.auth}/>
-                		  <Route path="/admin/nuovocontatto"   render={(props)=><NewContatto adminMode={true} {...props} />}  auth={this.props.auth}/>
-                		  <Route path="/admin/nuovoprofessionista"   render={(props)=><NewProfessionista adminMode={true} {...props} />}  auth={this.props.auth}/>
-                		  <Route path="/admin/notelegali"   render={(props)=><NoteLegali adminMode={true} {...props} />}  auth={this.props.auth}/>
+                		  <Route path="/admin/esecuzioni"   render={(props)=><Esecuzioni adminMode={true} {...props} />} />
+                		  <Route path="/admin/nuovaesecuzione"   render={(props)=><NewEsecuzione adminMode={true} {...props} />}  />
+                		  <Route path="/admin/contatti"   render={(props)=><Contatti adminMode={true} {...props} />}/>
+                		  <Route path="/admin/nuovocontatto"   render={(props)=><NewContatto adminMode={true} {...props} />}  />
+                		  <Route path="/admin/nuovoprofessionista"   render={(props)=><NewProfessionista adminMode={true} {...props} />}  />
+                		  <Route path="/admin/notelegali"   render={(props)=><NoteLegali adminMode={true} {...props} />} />
                 		
 					</Col>
 					
@@ -93,3 +92,5 @@ export default class AdminConsole extends Component{
 	}
 
 }
+
+export default withRouter(AdminConsole);

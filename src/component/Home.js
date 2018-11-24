@@ -76,20 +76,14 @@ class Home extends Component{
 		componentDidMount() {
 			 this.bindAsObject(getHome(),  "home");
 
-			/*getHome().then(home=>{
-							
-					        this.setState({
-					            home
-
-					        })
-
-					    });*/
+			
 		}
 		handleAnnulla(){
-			getHome().then(home=>{
+			getHome().once("value").then(home=>{
 							
-					        this.setState({
-					            home,
+							let homeValue=home.val();
+							this.setState({
+					            home:homeValue,
 					            editMode:!this.state.editMode
 
 					        })

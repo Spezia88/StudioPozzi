@@ -15,23 +15,23 @@ import InformativaCookie from './InformativaCookie';
 import Attivita from './Attivita.js';
 import ServiziAlCliente from './ServiziAlCliente.js';
 import AdminConsole from './AdminConsole';
-
+import {AuthUser,ROLE_ADMIN,ROLE_CLIENT} from '../js/common';
 import Login from './Login';
 import {Route,Switch,Redirect} from 'react-router-dom';
-import {Grid} from 'react-bootstrap';
+
 
 //import HomeAdmin from './Admin/Home';
 
-const PrivateRoute = ({ component: Component,auth, ...rest}) =>{
+const PrivateRoute = ({ component: Component,authRole, ...rest}) =>{
 						
-
+						
 						return (
 						  
 						  
 						  <Route {...rest} render={props =>{ 
 						  						
 						  							
-												   	return(	 auth ? (
+												   	return(	 AuthUser.isAuthenticated && (AuthUser.role===authRole || AuthUser.role===ROLE_ADMIN) ? (
 														       <Component {...props} adminMode={true} />
 														    ) : (
 														      <Redirect to={{
@@ -48,8 +48,6 @@ const PrivateRoute = ({ component: Component,auth, ...rest}) =>{
 }
 
 
-
-/*<Route path='approfondimenti/:id' component={CircolariPerAnno} />*/
 class Content extends Component{
 	constructor(props) {
 		super(props);
@@ -66,21 +64,21 @@ class Content extends Component{
 					<Route exact path='/' render={(props)=><Home adminMode={false} {...props}  />} />
 			        <Route path='/studio'  render={(props)=><Associati adminMode={false} {...props}  />}/>
 			   
-			        <Route  path='/notelegali' component={NoteLegali} />
-	             	<Route  path='/privacy' component={Privacy} />
-	             	<Route  path='/disclaimer' component={Disclaimer} />
-			        <Route  path='/login'  render={(props)=><Login {...this.props} {...props} /> } />
+			        <Route  path='/notelegali' component={NoteLegali} adminMode={false}/>
+	             	<Route  path='/privacy' component={Privacy} adminMode={false}/>
+	             	<Route  path='/disclaimer' component={Disclaimer} adminMode={false}/>
+			        <Route  path='/login'  render={(props)=><Login  {...props} /> } />
 		
-			        <Route path='/esecuzioni'  component={Esecuzioni}/>
-			        <Route path='/link' component={ListSiti}/>
-			        <Route path='/contatti' component={Contatti}/>
-			        <Route path='/informativacookie' component={InformativaCookie}/>
+			        <Route path='/esecuzioni'  component={Esecuzioni} adminMode={false}/>
+			        <Route path='/link' component={ListSiti} adminMode={false}/>
+			        <Route path='/contatti' component={Contatti} adminMode={false}/>
+			        <Route path='/informativacookie' component={InformativaCookie} adminMode={false}/>
 			        <Route path='/attivita/*' render={(props)=><SideBarAttivita adminMode={false} {...props} /> } />
-			     	<Route path="/attivita" exact component={Attivita} />	
-			     	<Route path="/servizialcliente" exact component={ServiziAlCliente} />	
+			     	<Route path="/attivita" exact component={Attivita} adminMode={false}/>	
+			     	<Route path="/servizialcliente" exact component={ServiziAlCliente} adminMode={false}/>	
 			     	
 			     
-			     	<PrivateRoute  path="/approfondimenti"  component={Circolari} auth={this.props.authCircolari}/> 
+			     	<PrivateRoute  path="/approfondimenti"  component={Circolari} authRole={ROLE_CLIENT}/> 
 			     	
 			        
 			    </Switch>

@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {Col,Button } from 'react-bootstrap';
-
+import {AuthUser, ROLE_ADMIN} from '../../js/common';
 
 class ButtonGroup extends Component{
 	
@@ -58,7 +58,7 @@ class ButtonGroup extends Component{
 	}
 	render(){
 		
-		if(!this.props.adminMode)
+		if(!AuthUser.isAuthenticated && AuthUser.role!==ROLE_ADMIN || !this.props.adminMode)
 			return null;
 		
 		let Annulla;
