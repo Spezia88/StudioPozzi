@@ -35,7 +35,7 @@ export default class ServiziAlCliente extends Component{
 							<Col sm={12} lg={8} >
 								  <h4 className="titoloServiziCliente">Fatturazione Elettronica</h4>
 								  <Span/>
-								  <Siti immagine="logo-bluenext.png" nome="bluenext" sito="https://login.sonoincloud.it/cas-web/login?service=http%3A%2F%2Fdef.sonoincloud.it%2Fdef%2F"  handleClick={(link)=>window.open(link)} classImage="logoBluenext" classContainer="divBluenext"/>
+								  <Siti immagine="logo-bluenext.png" nome="bluenext" sito="http://fattureonline.sonoincloud.it"  handleClick={(link)=>window.open(link)} classImage="logoBluenext" classContainer="divBluenext"/>
 								 
 								 
 								  
