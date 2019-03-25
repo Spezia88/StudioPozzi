@@ -25,7 +25,6 @@ class LoginForm extends Component {
     e.preventDefault();
 		var _this=this;
 		let userName=this.username.value;
-		debugger;
     if(this.props.location.state.from.pathname!=="/admin"){
 		
 	    userName=userName+'@gmail.com';
@@ -33,7 +32,8 @@ class LoginForm extends Component {
   
 
   	login(userName, this.pw.value).catch((error) => {
-	          _this.setState({
+						debugger;
+						_this.setState({
 	          				 loginMessage:'Username/password errati'
 	          })
 	  		})
@@ -59,7 +59,7 @@ class LoginForm extends Component {
 		
 			titleSection="APPROFONDIMENTI";
 			titleLogin="LOGIN CLIENTI";
-			infoMsg="Le circolari vengono predisposte ed automaticamente inviate ai clienti dello studio. Per poter accedere all'area riservata vogliate cortesemente inviare una richiesta via mail al seguente indirizzo:<br/>info@studiopozzicommercialisti.it";
+			infoMsg="Le circolari vengono predisposte ed automaticamente inviate ai clienti dello studio. Per poter accedere all'area riservata vogliate cortesemente inviare una richiesta via mail al seguente indirizzo: info@studiopozzicommercialisti.it";
 
 		}
 

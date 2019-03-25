@@ -43,12 +43,13 @@ class App extends Component {
   componentWillMount() {
     var _this=this; 
     this.listener = firebaseAuth().onAuthStateChanged((user) => {
-                           
+                            
+                            debugger;
                             if (user) {
                                     this.setState({ user});
                                     
                                     getUserRole(user.uid).then(user=>{
-                                           
+                                            debugger;
                                             AuthUser.authenticate(user.val().role);
                                             if(_this.props.location.state.from.pathname==="/admin" && user.val().role===ROLE_ADMIN)
                                                 _this.props.history.push("/admin");
