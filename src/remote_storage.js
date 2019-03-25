@@ -313,7 +313,7 @@ export function addEsecuzione(esecuzione){
 
 
 export function login (username, pw) {
-  debugger;
+ 
   return firebaseAuth().signInWithEmailAndPassword(username, pw)
 }  
 
