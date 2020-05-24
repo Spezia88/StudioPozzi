@@ -44,6 +44,12 @@ export function getCircolariAnno(anno){
    return database.ref('anniCircolari').child(anno);
 }
 
+export function getCircolariAnnoPaginate(anno,offset){
+  
+  return database.ref('anniCircolari').child(anno).startAt(10*offset).limitToFirst(10);
+}
+
+
 export function downloadCircolare(fileName,anno){
 
     var starsRef = storageCircolari.child(anno+'/'+fileName);

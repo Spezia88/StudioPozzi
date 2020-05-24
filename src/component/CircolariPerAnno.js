@@ -1,8 +1,6 @@
 import React,{ Component } from 'react';
-//import  '../css/Associati.css';
-import TitleBanner from './TitleBanner';
-import {Grid,Row,Col,Button} from 'react-bootstrap';
-import {signOutCircolari,getCircolariAnno,downloadCircolare,deleteCircolare,saveCircolare} from '../remote_storage';
+import {Row,Col,Button} from 'react-bootstrap';
+import {getCircolariAnno,downloadCircolare,deleteCircolare,saveCircolare} from '../remote_storage';
 import {storageCircolari} from '../database';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
@@ -11,24 +9,12 @@ import Span from './Span.js';
 import UploadFile from './Admin/UploadFile';
 import { ImageFromStorage } from 'react-firebase-storage-connector';
 import '../css/Circolari.css';
-import {removeIndexFromArray} from '../js/common.js'
+import {removeIndexFromArray} from '../js/common.js';
+import ReactPaginate from 'react-paginate';
 import {
   Route,
   Link
 } from 'react-router-dom';
-
-/*
-
-.then(data=>{
-			 				
-			 				
-			 				this.setState({
-			 					circolari:this.state.circolari.concat(data)
-			 				})
-			 				
-			 		})
-
-*/
 
 const Circolare=(props)=>{
 	
@@ -78,8 +64,8 @@ class CircolariPerAnno extends Component{
 		this.state={
 
 			circolari:[],
-
-			anno:this.props.match.params.anno
+			anno:this.props.match.params.anno,
+			offset:0
 		}
 		
 	}
@@ -89,7 +75,7 @@ class CircolariPerAnno extends Component{
 	componentWillMount() {
 		console.log(this.props.adminMode);
 		this.bindAsArray(getCircolariAnno(this.state.anno), "circolari");
-			 
+	
 		
 	}
 
@@ -104,13 +90,10 @@ class CircolariPerAnno extends Component{
 		
 		if(this.state.anno!==nextProps.match.params.anno){
 			
-			console.log("UnBind Circolari Received props");
 			this.unbind("circolari");
-			this.setState({anno:nextProps.match.params.anno});
+			this.setState({anno:nextProps.match.params.anno,offset:0});
 			this.bindAsArray(getCircolariAnno(nextProps.match.params.anno), "circolari");
-			
-			
-			
+	
 		}
 			
 			
@@ -160,18 +143,20 @@ class CircolariPerAnno extends Component{
 
 	handleUploadSuccess(data){
 
-			console.log("Upload ok: "+data);
 			saveCircolare(this.state.anno,this.state.circolari,data);
 	}
+	handlePageClick = data => {
 
-
+		this.setState({offset:data.selected});
+		
+	};
 
 	render(){
 			
-			const ListCircolari=this.state.circolari.map((circolare,index)=>{
+			const pageCount = Math.round(this.state.circolari.length / 10);
+			const ListCircolari=this.state.circolari.slice(this.state.offset*10,this.state.offset*10+10).map((circolare,index)=>{
 				
-				return(
-										
+				return(	
 						
 							<Col xs={12} sm={12} md={12} lg={12} key={index}>
 									<Circolare  adminMode={this.props.adminMode} circolare={circolare.nome} key={index} index={index} handleClick={this.handleClick.bind(this)} deleteCircolare={this.deleteCircolare.bind(this)}/>
@@ -212,6 +197,19 @@ class CircolariPerAnno extends Component{
 							<Span />
 								
 								{ListCircolari}
+								<ReactPaginate
+									previousLabel={'Precedente'}
+									nextLabel={'Successivo'}
+									breakLabel={'...'}
+									breakClassName={'break-me'}
+									pageCount={pageCount}
+									marginPagesDisplayed={2}
+									pageRangeDisplayed={5}
+									onPageChange={this.handlePageClick}
+									containerClassName={'pagination'}
+									subContainerClassName={'pages pagination'}
+									activeClassName={'active'}
+								/>
 									
 							</Row>
 							

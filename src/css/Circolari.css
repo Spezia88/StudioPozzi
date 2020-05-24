@@ -22,3 +22,10 @@
 	cursor: pointer; 
 	cursor: hand;
 }
+ul.pagination>li{
+	border-bottom:0px!important;
+}
+
+ul.pagination > li:before{
+	display:none !important;
+}
