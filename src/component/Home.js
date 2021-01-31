@@ -24,33 +24,38 @@ const CarouselInstance =(props)=>{
 		  <Carousel >
 		    
 		    <Carousel.Item>
-		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/Salariunioni_1_HD.jpg')} />
-		   
+		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/Salariunioni_1_HD.jpg')} />	   
 		    </Carousel.Item>
+
 		    <Carousel.Item>
 		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/salariunionifullHD.jpg')} />
 		      
 		    </Carousel.Item>
 		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/StudioPozziEsterni_elaboraz_4.jpg')} />
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/morbegno1.jpg')} />
 		      
 		    </Carousel.Item>
 		    
 		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/StudioPozziEsterni_elaboraz_6.jpg')} />
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/morbegno2.jpg')} />
 		      
 		    </Carousel.Item>
 
 		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/Ufficio1_FileHD.jpg')} />
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/milano1.jpg')} />
 		      
 		    </Carousel.Item>
 		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/ufficiopianoterrafullHD2.jpg')} />
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/milano2.jpg')} />
 		      
 		    </Carousel.Item>
-
-		    
+			<Carousel.Item>
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/livigno1.jpg')} />
+		      
+		    </Carousel.Item>
+			<Carousel.Item>
+		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/livigno2.jpg')} />  
+		    </Carousel.Item>	    
 		  </Carousel>
 		
 	)
