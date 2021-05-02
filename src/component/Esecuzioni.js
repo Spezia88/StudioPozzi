@@ -1,19 +1,15 @@
 import React,{ Component } from 'react';
-//import  '../css/Associati.css';
 import TitleBanner from './TitleBanner';
 import { ImageFromStorage } from 'react-firebase-storage-connector';
-import {Media,Grid,Button,Col } from 'react-bootstrap';
-
+import {Media,Button,Col } from 'react-bootstrap';
 import firebase from 'firebase';
 import '../css/Esecuzioni.css';
-//import database from '../database.js';
 import {getEsecuzioni,deleteEsecuzione,saveEsecuzioni} from '../remote_storage';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 import ButtonGroup from './Admin/ButtonGroup.js';
-import {removeIndexFromArray} from '../js/common.js';
-import { Link,NavLink } from 'react-router-dom';
-//import associati from '../datiAssociati.js'
+import {NavLink } from 'react-router-dom';
+
 class LinkDocumentazione extends Component {
 		constructor(props) {
 			
@@ -50,12 +46,6 @@ class LinkDocumentazione extends Component {
 			window.open(this.state.url);
 		}
 		render() {
-				/*let ButtonElimina;
-				if(this.props.editMode)
-					ButtonElimina=<div>
-							<Button onClick={()=>this.props.handleEliminaDocumento} bsStyle="danger">Elimina</Button>
-						</div>;*/
-
 				return(
 					<div>
 						<div>
@@ -81,7 +71,6 @@ class  Esecuzione extends Component{
 							professionista:props.professionista
 					}
 					this.handleChange=this.handleChange.bind(this);
-					//this.handleEliminaDocumento=this.handleEliminaDocumento.bind(this);
 				}
 
 				handleChange(event){
@@ -159,11 +148,7 @@ class  Esecuzione extends Component{
 						
 							
 					)
-				}
-				
-				
-				
-		
+				}		
 }
 
 function Aggiungi(props) {

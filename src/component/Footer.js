@@ -12,7 +12,7 @@ const Footer =()=>{
               
 	                	<Col lg={8} md={6}>
 	                		 <p className="textFooter">
-	             	 			<small>© 2009-2017, STUDIO POZZI - Partita Iva IT 05093720968</small>
+	             	 			<small>© 2009-2021, STUDIO POZZI - Partita Iva IT 05093720968</small>
 	                		</p>
 	                	</Col>
 	                	<Col lg={1} md={2}>

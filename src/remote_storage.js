@@ -1,21 +1,12 @@
 import {database,firebaseAuth,storageCircolari} from './database.js';
-import {getKeys} from './js/common.js'
 
 export function getAssociati() {
-  return database.ref('associati')/*.once('value').then(data => {
- 
-    const associati = data.val();
-    return associati;
-  });*/
+  return database.ref('associati')
 }
 
 
 export function getEsecuzioni() {
-  return database.ref('esecuzioni_immobiliari')/*.once('value').then(data => {
- 
-    const esecuzioni = data.val();
-    return esecuzioni;
-  });*/
+  return database.ref('esecuzioni_immobiliari')
 }
 
 export function saveEsecuzioni(esecuzioni){
@@ -333,6 +324,47 @@ export function getUserRole(uid){
   return database.ref('users').child(uid).once('value');
 }
 
+// Clienti
+export function getClienti() {
+  return database.ref('clienti').orderByChild('ordine');
+}
 
+export function saveClienti(clienti){
+    
+  let clientiNew=[];
+
+  clienti.map((cliente,index)=>{
+             
+              delete cliente[".key"];
+              clientiNew.push(cliente);
+
+      })
+  return database.ref('clienti').set(clientiNew);
+}
+
+export function deleteCliente(key){
+
+
+  return database.ref('clienti').child(key).remove().then(function() {
+    console.log("cliente eliminato");
+  });
+}
+export function addCliente(cliente){
+        return database.ref("clienti").push().set({
+                  logo: cliente.logo,
+                  nome: cliente.nome,
+                  sito: cliente.sito,
+                  ordine: cliente.ordine
+                  
+                });
+
+}
+
+export function getInCostruzione() {
+  return database.ref('inCostruzione').once('value').then(data => {
+    const inCostruzione = data.val();
+    return inCostruzione;
+  });
+}
 
 

@@ -10,7 +10,7 @@ const IframeRatio =()=>{
 	
 	return(
 		
-		 <Iframe url="https://wcims.ratio.it/lframe/?t=959725b570d3d0d51e18e799a987a8c0"
+		 <Iframe url="https://box.ratio.it/2/index.php?bg=ffffff&text=333333&link=45bdbf&news=428bca&border=dddddd&logo=logo6&t=959725b570d3d0d51e18e799a987a8c0"
 				        width="100%"
 				        height="450px"
 				        display="initial"

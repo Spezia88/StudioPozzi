@@ -1,9 +1,5 @@
 import React,{ Component } from 'react';
-import {Col,Button,Grid,FormGroup,ControlLabel,FormControl,HelpBlock } from 'react-bootstrap';
-import firebase from 'firebase';
-
-import FileUploader from 'react-firebase-file-uploader';
-
+import {Button,FormGroup,ControlLabel,FormControl,HelpBlock } from 'react-bootstrap';
 import {storageEsecuzioni} from '../../database';
 import UploadFile from './UploadFile';
 import {addEsecuzione} from '../../remote_storage';
@@ -17,38 +13,6 @@ function FieldGroup({ id, label, help, ...props }) {
     </FormGroup>
   );
 }
-
-/*const AlertDismissable (props){
-  
-
-  render() {
-    if (props.alertVisible) {
-      return (
-        <Alert bsStyle="danger" onDismiss={this.handleAlertDismiss}>
-          <h4>Oh snap! You got an error!</h4>
-          <p>Change this and that and try again. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Cras mattis consectetur purus sit amet fermentum.</p>
-          <p>
-            <Button bsStyle="danger">Take this action</Button>
-            <span> or </span>
-            <Button onClick={this.handleAlertDismiss}>Hide Alert</Button>
-          </p>
-        </Alert>
-      );
-    }
-
-    return (
-      <Button onClick={this.handleAlertShow}>Show Alert</Button>
-    );
-  },
-
-  handleAlertDismiss() {
-    this.setState({alertVisible: false});
-  },
-
-  handleAlertShow() {
-    this.setState({alertVisible: true});
-  }
-});*/
 
 class NewEsecuzione extends Component{
 	constructor(props) {

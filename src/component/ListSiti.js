@@ -20,7 +20,6 @@ export const Siti=(props)=>{
 		  	 
 		  			<div onClick={()=>props.handleClick(props.sito)} className={props.classContainer}>
 			 			<ImageFromStorage storageRef={firebase.storage().ref('image').child(props.immagine)} alt={props.nome} className={props.classImage} />
-			 		
 		 			</ div>
 		 	
 	)
@@ -51,7 +50,6 @@ class ListSiti extends Component{
 						
 							<Col xs={12} sm={12} md={6} lg={4} key={index}>
 									<Siti {...siti} key={index} handleClick={this.openSite} classImage="avatarSito" classContainer="containerSito" />
-									
 							</Col>
 							
 						

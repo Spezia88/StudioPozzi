@@ -1,25 +1,18 @@
 import React, { Component } from 'react';
 
 import './App.css';
-//import './css/NavBar.css';
-
-//import Home from './component/Home';
-//import Associati from './component/Associati';
 import Header from './component/Header';
 import NavBar from './component/NavBar';
 import Footer from './component/Footer';
 import Content from './component/Content';
-import Home from './component/Home';
 import AdminConsole from './component/AdminConsole';
 import {PrivateRoute} from './component/Content';
-import {BrowserRouter as Router,hashHistory,Route,Redirect,withRouter} from 'react-router-dom';
-import {getContatti,getNoteLegali,getPrivacy,getDisclaimer, getUserRole } from './remote_storage';
-import {database,firebaseAuth} from './database.js';
+import {BrowserRouter as Router,Route,Redirect,withRouter} from 'react-router-dom';
+import {getNoteLegali,getPrivacy,getDisclaimer, getUserRole } from './remote_storage';
+import {firebaseAuth} from './database.js';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 import {AuthUser,ROLE_ADMIN} from './js/common';
-//import Site from './Site';
-
 
 class App extends Component {
   constructor() {
@@ -51,7 +44,7 @@ class App extends Component {
                                             
                                             var userRole=user.val().role;
                                             AuthUser.authenticate(user.val().role);
-                                            if(_this.props.location.state.from.pathname==="/admin" && userRole===ROLE_ADMIN)
+                                            if(_this.props.location.state && _this.props.location.state.from.pathname==="/admin" && userRole===ROLE_ADMIN)
                                                 _this.props.history.push("/admin");
                                             else
                                                 _this.props.history.push("/approfondimenti");
@@ -94,10 +87,7 @@ class App extends Component {
 
         })
 
-    });
-
-   
-    
+    });   
   }
   
   componentWillUnmount () {
@@ -124,11 +114,12 @@ class App extends Component {
                       <Redirect to="/link"/>
                   
                   )}/>
-                  <Route exact path="/esecuzioni.htm" render={() => (
+
+                <Route exact path="/clienti.htm" render={() => (
                    
-                      <Redirect to="/esecuzioni"/>
-                  
-                  )}/>
+                   <Redirect to="/clienti" />
+               
+                 )}/>
                   <Route exact path="/studio.htm" render={() => (
                    
                       <Redirect to="/studio"/>
@@ -162,7 +153,7 @@ class App extends Component {
                   )}/>
 
                
-                  <Route  path="/"   render={(props)=><Content authCircolari={this.state.authCircolari} authAdmin={this.state.authAdmin} {...props}  />}     />
+                  <Route  path="/"   render={(props)=><Content authCircolari={this.state.authCircolari} authAdmin={this.state.authAdmin}  {...props}  />}     />
                 </div>
                 
                

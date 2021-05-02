@@ -1,0 +1,56 @@
+.content {
+  min-height: 1820px;
+}
+
+.containerSitiClienti{
+    align-items: left;
+    height: auto;
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+.cliente {
+  margin-bottom:2vh;
+}
+.containerTesto{
+  align-items: center;
+  width: 80%;
+  height: auto;
+  margin:auto;
+  margin-top: 5em;
+  margin-bottom: 5em;
+}
+.containerSitoCliente{
+	height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 5vh;
+  background-color: white;
+}
+
+.avatarSitoClienti{
+	height: auto;
+  max-height: 180px;
+  width: auto;
+  max-width: 300px;
+}
+
+.avatarSitoClienti:hover{
+	cursor:pointer;
+}
+.buttonGroup{
+  margin-top:16px;
+}
+
+@media (min-width: 992px) and (max-width: 1199px) {
+  .row > div:nth-child(2n+3) {
+    clear: left;
+  }  
+  
+}
+@media (min-width: 1200px) {
+  .row > div:nth-child(3n+4) {
+    clear: left;
+  }  
+  
+}

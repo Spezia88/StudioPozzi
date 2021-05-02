@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 import Home from './Home';
 import Associati from './Associati';
-import Esecuzioni from './Esecuzioni';
+import Clienti from './Clienti';
 import ListSiti from './ListSiti';
 import Contatti from './Contatti';
-import NavBar from './NavBar';
-//import Studio from './Studio';
 import Circolari from './Circolari';
 import Disclaimer from './Disclaimer';
 import NoteLegali from './NoteLegali';
@@ -14,7 +12,6 @@ import SideBarAttivita from './SideBarAttivita';
 import InformativaCookie from './InformativaCookie';
 import Attivita from './Attivita.js';
 import ServiziAlCliente from './ServiziAlCliente.js';
-import AdminConsole from './AdminConsole';
 import {AuthUser,ROLE_ADMIN,ROLE_CLIENT} from '../js/common';
 import Login from './Login';
 import {Route,Switch,Redirect} from 'react-router-dom';
@@ -69,7 +66,8 @@ class Content extends Component{
 	             	<Route  path='/disclaimer' component={Disclaimer} adminMode={false}/>
 			        <Route  path='/login'  render={(props)=><Login  {...props} /> } />
 		
-			        <Route path='/esecuzioni'  component={Esecuzioni} adminMode={false}/>
+			        <Route path='/clienti'  component={Clienti} adminMode={false}/>
+			
 			        <Route path='/link' component={ListSiti} adminMode={false}/>
 			        <Route path='/contatti' component={Contatti} adminMode={false}/>
 			        <Route path='/informativacookie' component={InformativaCookie} adminMode={false}/>

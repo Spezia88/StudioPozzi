@@ -63,14 +63,14 @@ class ButtonGroup extends Component{
 		
 		let Annulla;
 		if( this.props.editMode){
-				Annulla= <Col lg={3} sm={4}><Button onClick={this.handleClickAnnulla} bsStyle="danger">Annulla</Button></Col>;
+				Annulla= <div className="buttonGroupSaveUndo"><Col lg={3} sm={4}><Button onClick={this.handleClickAnnulla} bsStyle="danger">Annulla</Button></Col></div>;
 
 		}
 		else
 				Annulla=<Col lg={3} sm={4}></Col>;
 
 		return(
-			 <div>
+			 <div >
 				 <Col lg={5} sm={2}>
 				 
 				 </Col>
