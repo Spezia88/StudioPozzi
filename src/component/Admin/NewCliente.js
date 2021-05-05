@@ -51,9 +51,9 @@ class NewCliente extends Component{
 	
 		this.setState({
 				...this.state,
-				nome:this.nome.value,
+				nome:this.nome.value.charAt(0).toUpperCase() + this.nome.value.slice(1),
 				sito:this.sito.value,
-				ordine:this.ordine.value,
+				ordine: "",
 				
 		}, () => {
 			addCliente(this.state)
@@ -80,16 +80,7 @@ class NewCliente extends Component{
 					      label="Sito"
 					      placeholder="Inserisci sito"
 					      inputRef={ref => { this.sito = ref }}
-					    />
-
-						<FieldGroup
-					      id="formControlOrdine"
-					      type="text"
-					      label="Ordine"
-					      placeholder="Inserisci ordine"
-					      inputRef={ref => { this.ordine = ref }}
-					    />
-					 
+					    />					 
 					    <FormGroup controlId="formControlLogo">
 						     <ControlLabel>Aggiungi logo</ControlLabel>
 						   	 <UploadFile 

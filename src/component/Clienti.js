@@ -21,13 +21,13 @@ export const TestoClienti=()=>{
 						 I clienti e le referenze rappresentano, insieme ai collaboratori di studio, il nostro patrimonio più
 						importante e sono alla base della nostra reputazione.
 						La nostra clientela è costituita per lo più da società di capitali, anche strutturate in forma di gruppo, dai
-						loro soci e dalle le loro famiglie, da società di persone e da attività esercitate informa individuale e
+						loro soci e dalle le loro famiglie, da società di persone e da attività esercitate in forma individuale e
 						professionale.
 						La nostra clientela opera nei più disparati settori tra cui quello immobiliare, petrolifero, turistico/ricettivo,
 						macchine utensili, medicale, commercio, meccanica, servizi in genere, energie rinnovabili e consulenza
-						professionale.
+						professionale.<br/>
 						<strong>Il Codice Deontologico della Professione di Dottore Commercialista ed Esperto Contabile</strong> consente
-						la menzione dei nostri clienti che hanno fornito il proprio consenso.<br/>
+						la menzione dei nostri clienti che hanno fornito specifica autorizzazione.<br/>
 						Di seguito una breve elencazione di alcuni tra coloro che hanno gentilmente prestato il proprio consenso:
 						</p>	 		
 		 			</div>
@@ -45,7 +45,7 @@ class Cliente extends Component{
 							logo:props.logo,
 							nome:props.nome,
 							sito:props.sito,
-							ordine:props.ordine
+							ordine:""
 					}
 					this.handleChangeCliente=this.handleChangeCliente.bind(this);
 				}
@@ -60,11 +60,10 @@ class Cliente extends Component{
 					
 				}
 				render(){
-					let Elimina,Ordine,Sito;
+					let Elimina,Sito;
 					
 					if(this.props.editMode){			
 						Elimina=  <Button onClick={()=>this.props.deleteCliente(this.props.index)} bsStyle="danger">Elimina</Button>
-						Ordine=<h3><input type="text" value={this.state.ordine} onChange={this.handleChangeCliente} title="ordine" /></h3>;
 						Sito=<h3><input type="text" value={this.state.sito} onChange={this.handleChangeCliente} title="sito" /></h3>;
 					}
 					
@@ -75,7 +74,6 @@ class Cliente extends Component{
 							  <div onClick={()=>this.props.handleClick(this.props.sito)} className={this.props.classContainer}>
 								  <ImageFromStorage storageRef={firebase.storage().ref('clienti').child(this.props.logo)} alt={this.props.nome} className={this.props.classImage} />	 		
 							  </ div>
-							  {Ordine}
 							  {Sito}
 							  {Elimina}
 					  		</div>
@@ -187,7 +185,7 @@ class Clienti extends Component{
 				
 		return(
 			<div>
-				<TitleBanner title="CLIENTI" adminMode={this.props.adminMode}/>
+				<TitleBanner title="CLIENTI E REFERENZE" adminMode={this.props.adminMode}/>
 				<div className="container content">
 					<TestoClienti classContainer="containerTesto" />
 

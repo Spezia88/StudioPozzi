@@ -61,11 +61,9 @@ class AdminConsole extends Component{
 						<ul>
 						  <li className="attivitaMenu" key={1}><NavLink activeClassName="attivitaSelected"  key={1} exact to="/admin" >HOME</NavLink></li>
 						  <li className="attivitaMenu" key={2}><NavLink activeClassName="attivitaSelected"  key={2} exact to="/admin/studio/professionisti" >PROFESSIONISTI</NavLink></li>
-						
 						  <li className="attivitaMenu" key={3}><NavLink activeClassName="attivitaSelected"  key={3} exact to="/admin/attivita" >ATTIVITA</NavLink></li>
 						  <li className="attivitaMenu" key={4}><NavLink activeClassName="attivitaSelected"  key={4} exact to="/admin/circolari" >CIRCOLARI</NavLink></li>
-						  {/* <li className="attivitaMenu" key={5}><NavLink activeClassName="attivitaSelected"  key={5} exact to="/admin/esecuzioni" >ESECUZIONI IMMOBILIARI</NavLink></li> */}
-						  <li className="attivitaMenu" key={5}><NavLink activeClassName="attivitaSelected"  key={5} exact to="/admin/clienti" >CLIENTI</NavLink></li>
+						  <li className="attivitaMenu" key={5}><NavLink activeClassName="attivitaSelected"  key={5} exact to="/admin/clienti" >CLIENTI E REFERENZE</NavLink></li>
 						  <li className="attivitaMenu" key={6}><NavLink activeClassName="attivitaSelected"  key={6} exact to="/admin/contatti" >CONTATTI</NavLink></li>
 						  <li className="attivitaMenu" key={7}><NavLink activeClassName="attivitaSelected"  key={7} exact to="/admin/notelegali" >NOTE LEGALI</NavLink></li>
 						  
@@ -75,11 +73,8 @@ class AdminConsole extends Component{
 						
 						  <Route exact path="/admin" render={(props)=><Home adminMode={true} {...props}  />}  />
                 		  <Route path="/admin/studio"   render={(props)=><Associati adminMode={true} {...props}  />}/>
-                		 
                 		  <Route path="/admin/circolari"  render={(props)=><Circolari adminMode={true} {...props} />}  />
                 		  <Route path="/admin/attivita"   render={(props)=><SideBarAttivita adminMode={true} {...props} />}  />
-                		  {/* <Route path="/admin/esecuzioni"   render={(props)=><Esecuzioni adminMode={true} {...props} />} /> */}
-                		  {/* <Route path="/admin/nuovaesecuzione"   render={(props)=><NewEsecuzione adminMode={true} {...props} />}  /> */}
 						  <Route path="/admin/clienti"   render={(props)=><Clienti adminMode={true} {...props} />} />
 						  <Route path="/admin/nuovocliente"   render={(props)=><NewCliente adminMode={true} {...props} />}  />
                 		  <Route path="/admin/contatti"   render={(props)=><Contatti adminMode={true} {...props} />}/>

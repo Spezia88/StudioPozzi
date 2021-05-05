@@ -32,7 +32,6 @@ class LoginForm extends Component {
   
 
   	login(userName, this.pw.value).catch((error) => {
-						debugger;
 						_this.setState({
 	          				 loginMessage:'Username/password errati'
 	          })

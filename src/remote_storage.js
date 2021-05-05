@@ -326,7 +326,7 @@ export function getUserRole(uid){
 
 // Clienti
 export function getClienti() {
-  return database.ref('clienti').orderByChild('ordine');
+  return database.ref('clienti').orderByChild('nome');
 }
 
 export function saveClienti(clienti){

@@ -12,7 +12,7 @@ import {getNoteLegali,getPrivacy,getDisclaimer, getUserRole } from './remote_sto
 import {firebaseAuth} from './database.js';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
-import {AuthUser,ROLE_ADMIN} from './js/common';
+import {AuthUser,ROLE_ADMIN,ROLE_CLIENT} from './js/common';
 
 class App extends Component {
   constructor() {
@@ -46,7 +46,7 @@ class App extends Component {
                                             AuthUser.authenticate(user.val().role);
                                             if(_this.props.location.state && _this.props.location.state.from.pathname==="/admin" && userRole===ROLE_ADMIN)
                                                 _this.props.history.push("/admin");
-                                            else
+                                            else if(userRole===ROLE_CLIENT)
                                                 _this.props.history.push("/approfondimenti");
 
                                     });
