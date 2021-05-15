@@ -4,20 +4,21 @@ import { ImageFromStorage } from 'react-firebase-storage-connector';
 import {Button,Col } from 'react-bootstrap';
 import firebase from 'firebase';
 import '../css/Clienti.css';
-import {getClienti,deleteCliente,saveClienti,getInCostruzione} from '../remote_storage';
+import {getClienti,deleteCliente,saveClienti,getInCostruzione,getTestoClienti, saveTestoClienti} from '../remote_storage';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 import ButtonGroup from './Admin/ButtonGroup.js';
 import {NavLink } from 'react-router-dom';
+import TinyMCE from 'react-tinymce';
 
-export const TestoClienti=()=>{
+export const TestoClienti=(props)=>{
 	
-	
+	const {testoClienti,editMode,handleChangeTestoClienti}=props;
 
 	return(
 		  	 
 		  			 <div>
-			 			<p>
+			 			{/* <p>
 						 I clienti e le referenze rappresentano, insieme ai collaboratori di studio, il nostro patrimonio più
 						importante e sono alla base della nostra reputazione.
 						La nostra clientela è costituita per lo più da società di capitali, anche strutturate in forma di gruppo, dai
@@ -29,7 +30,18 @@ export const TestoClienti=()=>{
 						<strong>Il Codice Deontologico della Professione di Dottore Commercialista ed Esperto Contabile</strong> consente
 						la menzione dei nostri clienti che hanno fornito specifica autorizzazione.<br/>
 						Di seguito una breve elencazione di alcuni tra coloro che hanno gentilmente prestato il proprio consenso:
-						</p>	 		
+						</p>	 		 */}
+						  {  editMode ? 
+                        <TinyMCE
+                          content={testoClienti}
+                          config={{
+                            plugins: 'lists',
+                            toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                          }}
+                          onChange={handleChangeTestoClienti}
+                        />
+                         :  <div dangerouslySetInnerHTML={{__html: testoClienti}}></div>
+                      }
 		 			</div>
 		 	
 	)
@@ -59,6 +71,7 @@ class Cliente extends Component{
 					this.props.handleChangeCliente(this.props.index,property,value);
 					
 				}
+		
 				render(){
 					let Elimina,Sito;
 					
@@ -110,17 +123,25 @@ class Clienti extends Component{
 		super(props);
 		this.state={
 			clienti:[],
+			testoClienti: '',
 			editMode:false
 		}
 		this.handleAnnulla=this.handleAnnulla.bind(this);
 		this.handleSave=this.handleSave.bind(this);
-		
+		this.handleChangeTestoClienti=this.handleChangeTestoClienti.bind(this);
 	}
 	componentWillMount() {
 		     this.bindAsArray(getClienti(), "clienti");
-			 getInCostruzione().then(inCostruzione => {
+
+			 getInCostruzione().then(inCostruzione => { 
 				this.setState({
 					inCostruzione
+				})
+			});
+
+			getTestoClienti().then(data => { 
+				this.setState({
+					testoClienti:data.testoClienti
 				})
 			});
 		
@@ -151,6 +172,13 @@ class Clienti extends Component{
 		})
 		
 	}
+	handleChangeTestoClienti(event){
+		let value=event.target.getContent();
+		this.setState({
+			testoClienti:value
+		})
+		
+	}
 	handleAnnulla(){
 			this.setState({
 					editMode:!this.state.editMode
@@ -160,10 +188,13 @@ class Clienti extends Component{
 	}
 	
 	handleSave(){
-			if(this.state.editMode)
+			if(this.state.editMode){
+				saveTestoClienti(this.state.testoClienti);
 				saveClienti(this.state.clienti).then(() => {
 					this.props.history.push('/clienti');	
-				});
+				});	
+			}
+				
 			this.setState({
 					editMode:!this.state.editMode
 			});
@@ -187,7 +218,7 @@ class Clienti extends Component{
 			<div>
 				<TitleBanner title="CLIENTI E REFERENZE" adminMode={this.props.adminMode}/>
 				<div className="container content">
-					<TestoClienti classContainer="containerTesto" />
+					<TestoClienti classContainer="containerTesto" testoClienti={this.state.testoClienti} editMode={this.state.editMode}  handleChangeTestoClienti={this.handleChangeTestoClienti}/>
 
 					<div className="containerSitiClienti">
 						{	ListClienti}

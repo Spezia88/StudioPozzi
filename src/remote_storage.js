@@ -362,8 +362,20 @@ export function addCliente(cliente){
 
 export function getInCostruzione() {
   return database.ref('inCostruzione').once('value').then(data => {
-    const inCostruzione = data.val();
-    return inCostruzione;
+    return data.val();
+  });
+}
+
+export function getTestoClienti() {
+  return database.ref('testoClienti').once('value').then(data => {
+    return data.val();
+  });
+}
+
+export function saveTestoClienti(testoClienti){
+
+  return database.ref('testoClienti').update({
+      testoClienti
   });
 }
 
