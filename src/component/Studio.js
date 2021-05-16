@@ -1,9 +1,8 @@
-import React,{ Component } from 'react';
+import React from 'react';
 //import  '../css/Associati.css';
 import TitleBanner from './TitleBanner';
-import { ImageFromStorage } from 'react-firebase-storage-connector';
-import {Grid,Row,Col,Media} from 'react-bootstrap';
-import firebase from 'firebase';
+import {Grid,Media} from 'react-bootstrap';
+
 import  '../css/Studio.css';
 
 const Studio=()=> {

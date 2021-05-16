@@ -18,19 +18,6 @@ export const TestoClienti=(props)=>{
 	return(
 		  	 
 		  			 <div>
-			 			{/* <p>
-						 I clienti e le referenze rappresentano, insieme ai collaboratori di studio, il nostro patrimonio più
-						importante e sono alla base della nostra reputazione.
-						La nostra clientela è costituita per lo più da società di capitali, anche strutturate in forma di gruppo, dai
-						loro soci e dalle le loro famiglie, da società di persone e da attività esercitate in forma individuale e
-						professionale.
-						La nostra clientela opera nei più disparati settori tra cui quello immobiliare, petrolifero, turistico/ricettivo,
-						macchine utensili, medicale, commercio, meccanica, servizi in genere, energie rinnovabili e consulenza
-						professionale.<br/>
-						<strong>Il Codice Deontologico della Professione di Dottore Commercialista ed Esperto Contabile</strong> consente
-						la menzione dei nostri clienti che hanno fornito specifica autorizzazione.<br/>
-						Di seguito una breve elencazione di alcuni tra coloro che hanno gentilmente prestato il proprio consenso:
-						</p>	 		 */}
 						  {  editMode ? 
                         <TinyMCE
                           content={testoClienti}

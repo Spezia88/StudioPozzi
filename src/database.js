@@ -34,4 +34,5 @@ export const firebaseAuth = firebase.auth;
 export const storageCircolari = firebase.storage().ref("circolari");
 export const storageEsecuzioni = firebase.storage().ref("esecuzioni");
 export const storageClienti = firebase.storage().ref("clienti");
+export const storageCarousel = firebase.storage().ref("carousel");
 //export default database;

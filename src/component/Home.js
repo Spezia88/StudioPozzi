@@ -1,61 +1,31 @@
 import React,{Component} from 'react';
 import '../css/Home.css';
 import '../css/Card.css';
-
-import firebase from 'firebase';
 import { ImageFromStorage } from 'react-firebase-storage-connector';
-import {getHome,saveHome} from '../remote_storage';
+import {getHome,saveHome,getCarouselImages} from '../remote_storage';
 import ReactFireMixin from 'reactfire';
 import reactMixin from 'react-mixin';
 
 import {Carousel} from 'react-bootstrap';
 import CardInstance from './Card';
 import IframeRatio from './IframeRatio';
-import {Grid,Row,Col,Button } from 'react-bootstrap';
+import {storageCarousel} from '../database';
 
 import ButtonGroup from './Admin/ButtonGroup.js';
 
 const CarouselInstance =(props)=>{
-	const {adminMode}=props;
+	const {adminMode,carouselImages}=props;
 	if(adminMode)
 		return null;
+	const Images = carouselImages.map((image,index) => (
+		<Carousel.Item key={image.id}>
+			<ImageFromStorage storageRef={ storageCarousel.child(image.name)} alt={image.name}  className="imgCarousel"/>
+	  	</Carousel.Item>
+	))
 	return(
 		
 		  <Carousel >
-		    
-		    <Carousel.Item>
-		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/Salariunioni_1_HD.jpg')} />	   
-		    </Carousel.Item>
-
-		    <Carousel.Item>
-		      <img width={1900} height={500} alt="sala riunioni" src={require('../image/salariunionifullHD.jpg')} />
-		      
-		    </Carousel.Item>
-		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/morbegno1.jpg')} />
-		      
-		    </Carousel.Item>
-		    
-		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/morbegno2.jpg')} />
-		      
-		    </Carousel.Item>
-
-		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/milano1.jpg')} />
-		      
-		    </Carousel.Item>
-		    <Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/milano2.jpg')} />
-		      
-		    </Carousel.Item>
-			<Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/livigno1.jpg')} />
-		      
-		    </Carousel.Item>
-			<Carousel.Item>
-		      <img width={1900} height={500} alt="studio pozzi esterni" src={require('../image/livigno2.jpg')} />  
-		    </Carousel.Item>	    
+		    {Images}
 		  </Carousel>
 		
 	)
@@ -66,6 +36,7 @@ class Home extends Component{
 			super(props);
 			this.state={
 				home:{},
+				carouselImages:[],
 				editMode:false
 
 			}
@@ -80,8 +51,7 @@ class Home extends Component{
 		}
 		componentDidMount() {
 			 this.bindAsObject(getHome(),  "home");
-
-			
+			 this.bindAsArray(getCarouselImages(), "carouselImages");	
 		}
 		handleAnnulla(){
 			getHome().once("value").then(home=>{
@@ -172,7 +142,7 @@ class Home extends Component{
 			return(
 				<div >	
 					
-					<CarouselInstance adminMode={this.props.adminMode}/>
+					<CarouselInstance adminMode={this.props.adminMode} carouselImages={this.state.carouselImages}/>
 						
 					 
 					

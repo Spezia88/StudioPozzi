@@ -326,7 +326,8 @@ export function getUserRole(uid){
 
 // Clienti
 export function getClienti() {
-  return database.ref('clienti').orderByChild('nome');
+  const result = database.ref('clienti').orderByChild('nome');
+  return result;
 }
 
 export function saveClienti(clienti){
@@ -378,5 +379,36 @@ export function saveTestoClienti(testoClienti){
       testoClienti
   });
 }
+// carousel images
+export function getCarouselImages() {
+  const result = database.ref('carosello').orderByChild('id');
+  return result;
+}
 
+export function saveCarouselImage(immagini,file){
+ 
+  var immaginiNew=[];
+  immagini.map((immagine)=>{
+         
+          delete immagine[".key"];
+          immaginiNew.push(immagine);
+  })
+  immaginiNew.push({"name":file,"id":immagini.length+1});
+  return database.ref('carosello').set(immaginiNew);
+
+}
+
+export function deleteCarouselImage(immagini){
+
+  
+  var immaginiNew=[];
+  immagini.map((immagine)=>{
+       
+        delete immagine[".key"];
+        immaginiNew.push(immagine);
+
+  })
+ 
+  return database.ref('carosello').set(immaginiNew);
+}
 

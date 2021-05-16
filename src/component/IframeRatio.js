@@ -15,7 +15,7 @@ const IframeRatio =()=>{
 				        height="100px"
 				        display="initial"
 				        position="relative"
-				        styles={{border:"1px solid #d9d9d9", overflow:"visible", width:"100%"}}
+				        // styles={{border:"1px solid #d9d9d9", overflow:"visible", width:"100%"}}
 				        allowFullScreen />
 		
 	)

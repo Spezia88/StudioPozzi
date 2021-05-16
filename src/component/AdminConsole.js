@@ -11,6 +11,7 @@ import Associati from './Associati';
 import NewCliente from './Admin/NewCliente';
 import NewContatto from './Admin/NewContatto';
 import NewProfessionista from './Admin/NewProfessionista';
+import Carousel from './Admin/Carousel';
 import NoteLegali from './NoteLegali';
 import Contatti from './Contatti';
 import Circolari from './Circolari';
@@ -60,12 +61,13 @@ class AdminConsole extends Component{
 					<Col lg={2} >
 						<ul>
 						  <li className="attivitaMenu" key={1}><NavLink activeClassName="attivitaSelected"  key={1} exact to="/admin" >HOME</NavLink></li>
-						  <li className="attivitaMenu" key={2}><NavLink activeClassName="attivitaSelected"  key={2} exact to="/admin/studio/professionisti" >PROFESSIONISTI</NavLink></li>
-						  <li className="attivitaMenu" key={3}><NavLink activeClassName="attivitaSelected"  key={3} exact to="/admin/attivita" >ATTIVITA</NavLink></li>
-						  <li className="attivitaMenu" key={4}><NavLink activeClassName="attivitaSelected"  key={4} exact to="/admin/circolari" >CIRCOLARI</NavLink></li>
-						  <li className="attivitaMenu" key={5}><NavLink activeClassName="attivitaSelected"  key={5} exact to="/admin/clienti" >CLIENTI E REFERENZE</NavLink></li>
-						  <li className="attivitaMenu" key={6}><NavLink activeClassName="attivitaSelected"  key={6} exact to="/admin/contatti" >CONTATTI</NavLink></li>
-						  <li className="attivitaMenu" key={7}><NavLink activeClassName="attivitaSelected"  key={7} exact to="/admin/notelegali" >NOTE LEGALI</NavLink></li>
+						  <li className="attivitaMenu" key={2}><NavLink activeClassName="attivitaSelected"  key={7} exact to="/admin/immagini" >IMMAGINI HOME</NavLink></li>
+						  <li className="attivitaMenu" key={3}><NavLink activeClassName="attivitaSelected"  key={2} exact to="/admin/studio/professionisti" >PROFESSIONISTI</NavLink></li>
+						  <li className="attivitaMenu" key={4}><NavLink activeClassName="attivitaSelected"  key={3} exact to="/admin/attivita" >ATTIVITA</NavLink></li>
+						  <li className="attivitaMenu" key={5}><NavLink activeClassName="attivitaSelected"  key={4} exact to="/admin/circolari" >CIRCOLARI</NavLink></li>
+						  <li className="attivitaMenu" key={6}><NavLink activeClassName="attivitaSelected"  key={5} exact to="/admin/clienti" >CLIENTI E REFERENZE</NavLink></li>
+						  <li className="attivitaMenu" key={7}><NavLink activeClassName="attivitaSelected"  key={6} exact to="/admin/contatti" >CONTATTI</NavLink></li>
+						  <li className="attivitaMenu" key={8}><NavLink activeClassName="attivitaSelected"  key={7} exact to="/admin/notelegali" >NOTE LEGALI</NavLink></li>
 						  
 						</ul>
 					</Col>
@@ -81,6 +83,7 @@ class AdminConsole extends Component{
                 		  <Route path="/admin/nuovocontatto"   render={(props)=><NewContatto adminMode={true} {...props} />}  />
                 		  <Route path="/admin/nuovoprofessionista"   render={(props)=><NewProfessionista adminMode={true} {...props} />}  />
                 		  <Route path="/admin/notelegali"   render={(props)=><NoteLegali adminMode={true} {...props} />} />
+						  <Route path="/admin/immagini"   render={(props)=><Carousel adminMode={true} {...props} />} />
                 		
 					</Col>
 					
